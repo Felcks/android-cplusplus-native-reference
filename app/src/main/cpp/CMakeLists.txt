@@ -11,7 +11,7 @@ add_library(teste_simples STATIC IMPORTED)
 set_target_properties(teste_simples PROPERTIES IMPORTED_LOCATION
         ${distribution_DIR}/gmath/lib/${ANDROID_ABI}/teste_simples.a)
 
-add_library(hello-libs SHARED hello-libs.cpp)
+add_library(auth-libs SHARED auth-libs.cpp)
 
 # build application's shared lib
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
@@ -22,10 +22,10 @@ find_library( # Sets the name of the path variable.
         # you want CMake to locate.
         log)
 
-target_include_directories(hello-libs PRIVATE ${distribution_DIR}/gmath/include)
+target_include_directories(auth-libs PRIVATE ${distribution_DIR}/gmath/include)
 
 target_link_libraries( # Specifies the target library.
-        hello-libs
+        auth-libs
         # Links the target library to the log library
         # included in the NDK.
         android

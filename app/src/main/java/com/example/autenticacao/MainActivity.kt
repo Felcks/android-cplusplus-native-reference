@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         // Used to load the 'native-lib' library on application startup.
         init {
-            System.loadLibrary("hello-libs")
+            System.loadLibrary("auth-libs")
         }
     }
 }
