@@ -18,8 +18,15 @@
 #include <jni.h>
 #include <cinttypes>
 #include <android/log.h>
-#include "teste_simples.h"
+#include "auth.h"
 #include <string>
+#include "teste_simples.h"
+#include <iostream>
+
+#define URL "https://api-homolog-cobasiv2.mobfiq.com.br/api/getaccesstoken"
+#define KEY "cbe365e53f20f5d658256f6147e714c7d5914692b8a7113a7730fc49f6252949"
+#define USERNAME "cobasi"
+
 
 /* This is a trivial JNI example where we use a native method
  * to return a new VM String. See the corresponding Java source
@@ -28,15 +35,21 @@
  *   app/src/main/java/com/example/hellolibs/MainActivity.java
  */
 
-extern "C" JNIEXPORT jint JNICALL
+extern "C++" JNIEXPORT jint JNICALL
 Java_com_example_autenticacao_MainActivity_intFromJNI() {
     return printazero();
 }
 
-extern "C" JNIEXPORT jstring JNICALL
+extern "C++" JNIEXPORT jstring JNICALL
 Java_com_example_autenticacao_MainActivity_stringFromJNI(
         JNIEnv *env,
         jobject /* this */) {
     std::string hello = "Hello Danilo C++";
+
+    AuthHandler handler (URL, KEY, USERNAME);
+    performAuthChallenge(handler, KEY, 0);
+
     return env->NewStringUTF(hello.c_str());
 }
+
+

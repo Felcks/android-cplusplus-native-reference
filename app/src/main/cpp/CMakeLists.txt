@@ -14,8 +14,8 @@ set_target_properties(teste_simples PROPERTIES IMPORTED_LOCATION
 add_library(auth-libs SHARED auth-libs.cpp)
 
 # biblioteca do Patrick para Autenticacao MobFiq
-add_library(libauth STATIC IMPORTED)
-set_target_properties(libauth PROPERTIES IMPORTED_LOCATION
+add_library(auth STATIC IMPORTED)
+set_target_properties(auth PROPERTIES IMPORTED_LOCATION
         ${distribution_DIR}/gmath/lib/${ANDROID_ABI}/libauth.a)
 
 # build application's shared lib
@@ -35,4 +35,4 @@ target_link_libraries( # Specifies the target library.
         # included in the NDK.
         android
         teste_simples
-        libauth)
+        auth)
