@@ -47,7 +47,7 @@ Java_com_example_autenticacao_MainActivity_stringFromJNI(
     std::string hello = "Hello Danilo C++";
 
     AuthHandler handler (URL, KEY, USERNAME);
-    performAuthChallenge(handler, KEY, 0);
+    handler.getAccessToken();
 
     return env->NewStringUTF(hello.c_str());
 }
