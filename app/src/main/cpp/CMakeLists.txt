@@ -13,6 +13,10 @@ set_target_properties(teste_simples PROPERTIES IMPORTED_LOCATION
 
 add_library(hello-libs SHARED hello-libs.cpp)
 
+add_library(auth STATIC IMPORTED)
+set_target_properties(auth PROPERTIES IMPORTED_LOCATION
+        ${distribution_DIR}/gmath/lib/${ANDROID_ABI}/libauth.a)
+
 # build application's shared lib
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
@@ -29,4 +33,5 @@ target_link_libraries( # Specifies the target library.
         # Links the target library to the log library
         # included in the NDK.
         android
-        teste_simples)
+        teste_simples
+        auth)
