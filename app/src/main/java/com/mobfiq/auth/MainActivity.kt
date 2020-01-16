@@ -18,5 +18,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         sample_text.text = "Access Token: ${handler.accessToken}.\nExpires in: ${handler.expirationTime}"
+
+        //Necessario importar os arquivos .cpp e .h de uma biblioteca remota.
     }
 }
