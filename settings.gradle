@@ -1,2 +1,6 @@
-include ':app', ':importlibraryauth'
+include ':app',
+        ':mfauthhandler'
+
+project(':mfauthhandler').projectDir = new File('mfauthhandler')
+
 rootProject.name='auth'

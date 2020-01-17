@@ -1,6 +1,6 @@
 #include <string>
 
-#include "authhandler.h"
+#include "../../../../mfauthhandler/src/Authhandler.h"
 #include "handle.h"
 
 extern "C" JNIEXPORT void JNICALL
