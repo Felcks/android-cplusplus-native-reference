@@ -11,23 +11,24 @@ cmake_minimum_required(VERSION 3.4.1)
 # Gradle automatically packages shared libraries with your APK.
 
 add_library( # Sets the name of the library.
-             auth
+        auth
 
-             # Sets the library as a shared library.
-             SHARED
+        # Sets the library as a shared library.
+        SHARED
 
-             # Provides a relative path to your source file(s).
-             auth.cpp
+        # Provides a relative path to your source file(s).
+        auth.cpp
 
-             authhandler.cpp
-             authchallenge.cpp
-             sha256.cpp)
+        ../../../../mfauthhandler/src/Authhandler.cpp
+        ../../../../mfauthhandler/src/Authchallenge.cpp
+        ../../../../mfauthhandler/libraries/crypto/sha256.cpp)
 
-include_directories( src/main/cpp
+include_directories(
+        ../../../../mfauthhandler/src/
 
-                     libs/curl/include
-                     libs/openssl/include
-                     libs/rapidjson/include )
+        libs/curl/include
+        libs/openssl/include
+        libs/rapidjson/include)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -42,45 +43,45 @@ include_directories( src/main/cpp
 
 # Adds curl prebuilt library.
 
-add_library( curl-lib
-             STATIC IMPORTED )
+add_library(curl-lib
+        STATIC IMPORTED)
 
-set_target_properties( curl-lib
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/../../../libs/curl/lib/${ANDROID_ABI}/libcurl.a )
+set_target_properties(curl-lib
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/../../../libs/curl/lib/${ANDROID_ABI}/libcurl.a)
 
 # Adds ssl prebuilt library.
 
-add_library( ssl-lib
-             STATIC IMPORTED )
+add_library(ssl-lib
+        STATIC IMPORTED)
 
-set_target_properties( ssl-lib
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/../../../libs/openssl/lib/${ANDROID_ABI}/libssl.a )
+set_target_properties(ssl-lib
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/../../../libs/openssl/lib/${ANDROID_ABI}/libssl.a)
 
 # Adds crypto prebuilt library.
 
-add_library( crypto-lib
-             STATIC IMPORTED )
+add_library(crypto-lib
+        STATIC IMPORTED)
 
-set_target_properties( crypto-lib
-                       PROPERTIES IMPORTED_LOCATION
-                       ${CMAKE_SOURCE_DIR}/../../../libs/openssl/lib/${ANDROID_ABI}/libcrypto.a )
+set_target_properties(crypto-lib
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/../../../libs/openssl/lib/${ANDROID_ABI}/libcrypto.a)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       auth
+        auth
 
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       # ${log-lib}
-                       z log
+        # Links the target library to the log library
+        # included in the NDK.
+        # ${log-lib}
+        z log
 
-                       # Set external library dependencies.
-                       # The order on which each library is linked below
-                       # is important. Changing it may cause the project
-                       # to not build.
-                       curl-lib ssl-lib crypto-lib )
+        # Set external library dependencies.
+        # The order on which each library is linked below
+        # is important. Changing it may cause the project
+        # to not build.
+        curl-lib ssl-lib crypto-lib)

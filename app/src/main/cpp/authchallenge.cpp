@@ -11,7 +11,6 @@
 
 #include "../../../libs/curl/include/curl.h"
 #include "../../../libs/rapidjson/include/document.h"
-
 #include "sha256.h"
 
 using namespace std;
