@@ -1,0 +1,3 @@
+[submodule "mfauthhandler"]
+	path = mfauthhandler
+	url = https://git.curtivendi.com.br/Mobfiq/mfauthhandler
